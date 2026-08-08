@@ -71,6 +71,9 @@ export const metadata: Metadata = {
     shortcut: "/smart-traders-logo.jpeg",
     apple: "/smart-traders-logo.jpeg",
   },
+  verification: {
+    google: "JPQpvHQbC6mJL_uL1eJRVsakjgpUg1lN0UiTCxEWmnM",
+  },
 };
 
 export default function RootLayout({
