@@ -1431,8 +1431,12 @@ img {
   border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
-  padding: 80px 28px 36px;
-  gap: 8px;
+  padding-top: 112px; /* fallback; overridden inline once the real header height is measured */
+  padding-right: 28px;
+  padding-bottom: 36px;
+  padding-left: 28px;
+  gap: 10px;
+  overflow-y: auto;
   backdrop-filter: blur(20px);
 }
 
