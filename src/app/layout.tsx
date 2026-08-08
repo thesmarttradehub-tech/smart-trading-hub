@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { fontVariables } from "@/components/site-shell";
+
+const GA_MEASUREMENT_ID = "G-G5G8GGGTR1";
 
 const BASE_URL = "https://www.smarttradershub.in";
 
@@ -143,6 +146,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={fontVariables()}>
       <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
+
+        {/* Google Tag Manager (add GTM snippet below, if needed) */}
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

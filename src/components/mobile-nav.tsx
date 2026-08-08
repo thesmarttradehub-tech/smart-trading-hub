@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { navItems } from "@/lib/site-data";
@@ -31,31 +32,33 @@ export function MobileMenuToggle({ currentPath }: { currentPath: string }) {
         {open ? <X size={18} /> : <Menu size={18} />}
       </button>
 
-      {open && (
-        <>
-          <div
-            className="mobile-overlay"
-            aria-hidden="true"
-            onClick={() => setOpen(false)}
-          />
-          <nav
-            id="mobile-nav"
-            className="mobile-nav"
-            aria-label="Mobile navigation"
-          >
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`mobile-nav-link${currentPath === item.href ? " active" : ""}`}
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </>
-      )}
+      {open &&
+        createPortal(
+          <>
+            <div
+              className="mobile-overlay"
+              aria-hidden="true"
+              onClick={() => setOpen(false)}
+            />
+            <nav
+              id="mobile-nav"
+              className="mobile-nav"
+              aria-label="Mobile navigation"
+            >
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`mobile-nav-link${currentPath === item.href ? " active" : ""}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </>,
+          document.body
+        )}
     </>
   );
 }
