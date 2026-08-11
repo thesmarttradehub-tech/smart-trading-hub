@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display, Manrope } from "next/font/google";
-import { ArrowRight, Phone, Send } from "lucide-react";
+import { ArrowRight, Phone, Send, type LucideIcon } from "lucide-react";
 
 import {
   contactInfo,
@@ -12,6 +12,48 @@ import {
 } from "@/lib/site-data";
 import { MobileMenuToggle } from "@/components/mobile-nav";
 import { CandlestickChart } from "@/components/visuals";
+import { OpenAccountButton } from "@/components/account-modal";
+
+/**
+ * "Open Trading Account" opens the account modal (collects details, then
+ * hands off to WhatsApp) instead of navigating. "Speak With Our Team"
+ * goes straight to the Telegram community. Everything else falls back
+ * to the contact page.
+ */
+function CtaLink({
+  label,
+  className,
+  icon: Icon,
+}: {
+  label: string;
+  className: string;
+  icon?: LucideIcon;
+}) {
+  const content = (
+    <>
+      <span>{label}</span>
+      {Icon && <Icon size={18} aria-hidden="true" />}
+    </>
+  );
+
+  if (label === "Open Trading Account") {
+    return <OpenAccountButton className={className}>{content}</OpenAccountButton>;
+  }
+
+  if (label === "Speak With Our Team") {
+    return (
+      <a href={contactInfo.telegram} target="_blank" rel="noopener noreferrer" className={className}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href="/contact-us" className={className}>
+      {content}
+    </Link>
+  );
+}
 
 const display = Playfair_Display({
   subsets: ["latin"],
@@ -64,9 +106,9 @@ export function SiteHeader({ currentPath }: { currentPath: string }) {
             <Phone size={16} aria-hidden="true" />
             <span>{contactInfo.phone}</span>
           </a>
-          <Link href="/contact-us" className="button primary compact">
+          <OpenAccountButton className="button primary compact">
             Open Trading Account
-          </Link>
+          </OpenAccountButton>
           <MobileMenuToggle currentPath={currentPath} />
         </div>
       </div>
@@ -95,15 +137,13 @@ export function SiteFooter() {
                 to help you understand financial markets and learn with confidence.
               </p>
               <div className="cta-row">
-                {ctaButtons.map(({ label, href, icon: Icon }) => (
-                  <Link
+                {ctaButtons.map(({ label, icon }) => (
+                  <CtaLink
                     key={label}
-                    href={href}
+                    label={label}
                     className={label.includes("Open") ? "button primary" : "button secondary"}
-                  >
-                    <span>{label}</span>
-                    <Icon size={18} aria-hidden="true" />
-                  </Link>
+                    icon={icon}
+                  />
                 ))}
                 <a
                   href={contactInfo.telegram}
@@ -233,13 +273,8 @@ export function PageIntro({
           </h1>
           <p>{description}</p>
           <div className="cta-row">
-            <Link href="/contact-us" className="button primary">
-              <span>{primaryLabel}</span>
-              <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-            <Link href="/contact-us" className="button secondary">
-              <span>{secondaryLabel}</span>
-            </Link>
+            <CtaLink label={primaryLabel} className="button primary" icon={ArrowRight} />
+            <CtaLink label={secondaryLabel} className="button secondary" />
             {showTelegramCta && (
               <a
                 href={contactInfo.telegram}
