@@ -62,8 +62,8 @@ export default function AboutPage() {
       <main>
         <PageIntro
           badge="About Us"
-          title="Helping Learners"
-          accent="Trade Smarter."
+          title="Helping You"
+          accent="Learn Trading Better."
           description="Smart Traders is a stock market education and trading support company dedicated to simplifying the learning journey. We help beginners understand the markets, set up their accounts, learn platforms, and receive continuous support at every step."
           primaryLabel="Explore Courses"
           secondaryLabel="Speak With Our Team"

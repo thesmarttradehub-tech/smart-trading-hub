@@ -1,7 +1,25 @@
 import type { ReactNode } from "react";
-import { ChevronDown, Star } from "lucide-react";
+import { ChevronDown, Send, Star } from "lucide-react";
 
 import type { IconCard, Stat, Testimonial } from "@/lib/site-data";
+import { contactInfo } from "@/lib/site-data";
+
+export function TelegramStrip({ heading }: { heading: string }) {
+  return (
+    <div className="telegram-strip">
+      <p>{heading}</p>
+      <a
+        href={contactInfo.telegram}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="button primary"
+      >
+        <span>Join Our Telegram Community</span>
+        <Send size={18} aria-hidden="true" />
+      </a>
+    </div>
+  );
+}
 
 export function SectionHeading({
   badge,

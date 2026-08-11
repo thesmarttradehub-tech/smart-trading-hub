@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Playfair_Display, Manrope } from "next/font/google";
-import { ArrowRight, Phone } from "lucide-react";
+import { ArrowRight, Phone, Send } from "lucide-react";
 
 import {
   contactInfo,
@@ -89,10 +89,10 @@ export function SiteFooter() {
             />
 
             <div className="footer-cta-copy">
-              <h2>Start Your Learning Journey With Confidence</h2>
+              <h2>Start Your Trading Education Journey</h2>
               <p>
-                Get expert guidance, quality education, and reliable support
-                to help you trade smarter and learn with confidence.
+                Get educational guidance, quality content, and reliable support
+                to help you understand financial markets and learn with confidence.
               </p>
               <div className="cta-row">
                 {ctaButtons.map(({ label, href, icon: Icon }) => (
@@ -105,6 +105,15 @@ export function SiteFooter() {
                     <Icon size={18} aria-hidden="true" />
                   </Link>
                 ))}
+                <a
+                  href={contactInfo.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button secondary"
+                >
+                  <span>Join Our Telegram Community</span>
+                  <Send size={18} aria-hidden="true" />
+                </a>
               </div>
             </div>
 
@@ -202,6 +211,7 @@ export function PageIntro({
   secondaryLabel,
   highlights,
   visual,
+  showTelegramCta = false,
 }: {
   badge: string;
   title: string;
@@ -211,6 +221,7 @@ export function PageIntro({
   secondaryLabel: string;
   highlights: { title: string; description: string }[];
   visual: ReactNode;
+  showTelegramCta?: boolean;
 }) {
   return (
     <section className="hero">
@@ -229,6 +240,17 @@ export function PageIntro({
             <Link href="/contact-us" className="button secondary">
               <span>{secondaryLabel}</span>
             </Link>
+            {showTelegramCta && (
+              <a
+                href={contactInfo.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button secondary"
+              >
+                <span>Join Our Telegram Community</span>
+                <Send size={18} aria-hidden="true" />
+              </a>
+            )}
           </div>
           <div className="feature-strip">
             {highlights.map((item) => (

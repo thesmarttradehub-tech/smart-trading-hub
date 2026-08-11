@@ -8,6 +8,7 @@ import {
   SectionHeading,
   SplitPanel,
   StatsBand,
+  TelegramStrip,
   Testimonials,
 } from "@/components/sections";
 import { BullShowcase, MarketDashboard } from "@/components/visuals";
@@ -83,14 +84,15 @@ export default function Home() {
       <SiteHeader currentPath="/" />
       <main>
         <PageIntro
-          badge="Trade Smarter"
-          title="Trade Smarter. Learn Better."
-          accent="Grow Confidently."
-          description="Smart Traders is your trusted partner in stock market education and trading support. We help you open your trading account, onboard to the right platforms, learn with confidence in your language, and grow through structured learning and continuous guidance."
+          badge="Trading Education"
+          title="Learn Trading."
+          accent="Build Market Knowledge."
+          description="Learn technical analysis, market structure, trading psychology and risk management through structured educational content. Smart Traders helps you open your trading account, get onboarded on your platform, and learn with confidence in your language."
           primaryLabel="Open Trading Account"
           secondaryLabel="Explore Courses"
           highlights={homeHighlights}
           visual={<MarketDashboard />}
+          showTelegramCta
         />
 
         <StatsBand items={siteStats} />
@@ -135,6 +137,7 @@ export default function Home() {
               align="left"
             />
             <IconCardGrid items={courseCategories.slice(0, 8)} columns="four" dark />
+            <TelegramStrip heading="Want to Continue Learning?" />
           </div>
         </SectionFrame>
 

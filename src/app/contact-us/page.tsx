@@ -82,7 +82,7 @@ export default function ContactPage() {
         <PageIntro
           badge="Contact Us"
           title="We're Here to Help"
-          accent="You Trade Smarter."
+          accent="You Understand Financial Markets."
           description="Smart Traders is here to support you at every step of your journey. From account opening assistance and platform setup to educational support and customer guidance, our team is ready to help."
           primaryLabel="Speak With Our Team"
           secondaryLabel="Open Trading Account"

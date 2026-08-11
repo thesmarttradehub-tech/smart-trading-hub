@@ -57,6 +57,7 @@ export type Testimonial = {
 export const contactInfo = {
   phone: "+91 63835 94583",
   whatsapp: "916383594583",
+  telegram: "https://t.me/smarthub555",
   email: "support@smarttradershub.in",
   website: "smarttradershub.in",
   address: "Chennai, Tamil Nadu, India",
@@ -111,7 +112,7 @@ export const homeHighlights: IconCard[] = [
 
 export const aboutPillars: IconCard[] = [
   { title: "Stock Market Education", description: "Clear concepts designed for first-time learners.", icon: BookOpen },
-  { title: "Trading Support", description: "Step-by-step assistance through setup and execution.", icon: Headphones },
+  { title: "Learning Support", description: "Step-by-step assistance through setup and execution.", icon: Headphones },
   { title: "Platform Guidance", description: "Help choosing, understanding, and using trading tools.", icon: LineChart },
   { title: "Continuous Learning", description: "Resources and support that stay with you after onboarding.", icon: Sparkles },
 ];
@@ -128,7 +129,7 @@ export const values: IconCard[] = [
 export const supportServices: IconCard[] = [
   { title: "Trading Account Help", description: "End-to-end help in opening your trading account quickly.", icon: WalletCards },
   { title: "Platform Setup", description: "Installation and onboarding help for your trading tools.", icon: LineChart },
-  { title: "Expert Guidance", description: "Clear explanations from experienced mentors and support staff.", icon: UserRoundCheck },
+  { title: "Educational Guidance", description: "Clear explanations from experienced mentors and support staff.", icon: UserRoundCheck },
   { title: "Continuous Support", description: "Ongoing assistance whenever you need the next step explained.", icon: BellRing },
 ];
 
@@ -160,7 +161,7 @@ export const courseCategories: IconCard[] = [
 
 export const whyChoose: IconCard[] = [
   { title: "Complete Account Assistance", description: "From documentation to activation, we help you through it.", icon: WalletCards },
-  { title: "Platform Onboarding", description: "Get guided access to the right trading platforms.", icon: LineChart },
+  { title: "Platform Onboarding", description: "Structured trading-platform education to get you set up with confidence.", icon: LineChart },
   { title: "Educational Programs", description: "Courses structured for both beginners and growing traders.", icon: GraduationCap },
   { title: "Dedicated Customer Support", description: "A dependable team to answer questions at every step.", icon: Headphones },
   { title: "WhatsApp Support", description: "Fast support and reminders through your preferred channel.", icon: MessageCircleMore },
