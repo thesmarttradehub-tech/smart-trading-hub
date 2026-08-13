@@ -33,7 +33,21 @@ const LEARN_OPTIONS = [
   "Other",
 ];
 
-const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+const LEAD_EMAIL = "smarttradinghubofcl@gmail.com";
+
+function buildMailtoUrl(data: FormState) {
+  const subject = "New Lead from Smart Traders Website";
+  const lines = [
+    "New enquiry from the Start Your Learning Journey form:",
+    "",
+    `Full Name: ${data.name}`,
+    `Mobile Number: ${data.mobile}`,
+    `Email Address: ${data.email}`,
+    `What Would You Like to Learn: ${data.topic}`,
+    "Consent to be Contacted: Yes",
+  ];
+  return `mailto:${LEAD_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+}
 
 function validate(data: FormState): Errors {
   const errors: Errors = {};
@@ -56,8 +70,7 @@ function validate(data: FormState): Errors {
 export function HeroLeadForm() {
   const [form, setForm] = useState<FormState>(INITIAL);
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
-  const [submitError, setSubmitError] = useState("");
+  const [status, setStatus] = useState<"idle" | "success">("idle");
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -70,7 +83,7 @@ export function HeroLeadForm() {
     }
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const validationErrors = validate(form);
     if (Object.keys(validationErrors).length > 0) {
@@ -78,39 +91,10 @@ export function HeroLeadForm() {
       return;
     }
 
-    setSubmitError("");
-    setStatus("submitting");
-
-    try {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New Lead from Smart Traders Website",
-          from_name: form.name,
-          "Full Name": form.name,
-          "Mobile Number": form.mobile,
-          "Email Address": form.email,
-          "What Would You Like to Learn": form.topic,
-          "Consent to be Contacted": "Yes",
-          botcheck: "",
-        }),
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        setStatus("success");
-        setForm(INITIAL);
-        setErrors({});
-      } else {
-        setStatus("idle");
-        setSubmitError("Something went wrong. Please try again in a moment.");
-      }
-    } catch {
-      setStatus("idle");
-      setSubmitError("Something went wrong. Please check your connection and try again.");
-    }
+    window.open(buildMailtoUrl(form), "_blank", "noopener,noreferrer");
+    setStatus("success");
+    setForm(INITIAL);
+    setErrors({});
   }
 
   if (status === "success") {
@@ -122,7 +106,10 @@ export function HeroLeadForm() {
             ✓
           </div>
           <h2>Thank You!</h2>
-          <p>Your enquiry has been received. Our team will contact you shortly.</p>
+          <p>
+            We&apos;ve opened your email app with your enquiry pre-filled —
+            just hit send there and our team will contact you shortly.
+          </p>
           <a
             href={contactInfo.telegram}
             target="_blank"
@@ -146,15 +133,6 @@ export function HeroLeadForm() {
       </p>
 
       <form onSubmit={handleSubmit} noValidate aria-label="Start your learning journey">
-        <input
-          type="text"
-          name="botcheck"
-          tabIndex={-1}
-          autoComplete="off"
-          style={{ position: "absolute", left: "-9999px", width: 0, height: 0, opacity: 0 }}
-          aria-hidden="true"
-        />
-
         <div className="field-wrap">
           <label htmlFor="lead-name" className="field-label">
             Full Name <span aria-hidden="true">*</span>
@@ -273,14 +251,8 @@ export function HeroLeadForm() {
           </span>
         )}
 
-        {submitError && <p className="form-submit-error">{submitError}</p>}
-
-        <button
-          type="submit"
-          className="button primary hero-lead-form-submit"
-          disabled={status === "submitting"}
-        >
-          <span>{status === "submitting" ? "Sending..." : "GET INFORMATION"}</span>
+        <button type="submit" className="button primary hero-lead-form-submit">
+          <span>GET INFORMATION</span>
         </button>
       </form>
     </div>
