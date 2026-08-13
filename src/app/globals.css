@@ -265,7 +265,7 @@ img {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text);
   font-family: inherit;
-  font-size: 0.95rem;
+  font-size: 16px;
 }
 
 .hero-lead-form select {
