@@ -11,7 +11,8 @@ import {
   TelegramStrip,
   Testimonials,
 } from "@/components/sections";
-import { BullShowcase, MarketDashboard } from "@/components/visuals";
+import { BullShowcase } from "@/components/visuals";
+import { HeroLeadForm } from "@/components/lead-form";
 import {
   aboutPillars,
   homeHighlights,
@@ -91,7 +92,7 @@ export default function Home() {
           primaryLabel="Open Trading Account"
           secondaryLabel="Explore Courses"
           highlights={homeHighlights}
-          visual={<MarketDashboard />}
+          visual={<HeroLeadForm />}
           showTelegramCta
         />
 

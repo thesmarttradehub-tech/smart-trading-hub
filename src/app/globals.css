@@ -209,6 +209,136 @@ img {
   display: block;
 }
 
+.hero-lead-form {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(214, 172, 93, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(214, 172, 93, 0.1),
+    0 32px 80px rgba(0, 0, 0, 0.65),
+    0 8px 24px rgba(0, 0, 0, 0.45);
+  background:
+    linear-gradient(180deg, rgba(16, 12, 8, 0.98), rgba(8, 6, 5, 0.96)),
+    radial-gradient(circle at top right, rgba(214, 172, 93, 0.16), transparent 30%);
+  padding: 32px 30px 30px;
+}
+
+.hero-lead-form-glow {
+  position: absolute;
+  inset: -60px;
+  background: radial-gradient(ellipse at 60% 40%, rgba(214, 172, 93, 0.18), transparent 68%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-lead-form h2 {
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+  margin: 0 0 6px;
+  color: #fff6df;
+}
+
+.hero-lead-form-subtitle {
+  margin: 0 0 22px;
+  color: #d9ccb7;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.hero-lead-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hero-lead-form .field-label {
+  color: #f0e6d2;
+}
+
+.hero-lead-form input,
+.hero-lead-form select {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(224, 173, 71, 0.24);
+  padding: 13px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.hero-lead-form select {
+  appearance: auto;
+}
+
+.hero-lead-form select option {
+  color: #1b2740;
+}
+
+.hero-lead-form input::placeholder {
+  color: #7d7263;
+}
+
+.hero-lead-form input:focus-visible,
+.hero-lead-form select:focus-visible {
+  outline: 2px solid var(--gold-strong);
+  outline-offset: 2px;
+}
+
+.hero-lead-form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #d9ccb7;
+  line-height: 1.5;
+}
+
+.hero-lead-form-consent input[type="checkbox"] {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  accent-color: var(--gold-strong);
+}
+
+.hero-lead-form-submit {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.hero-lead-form-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hero-lead-form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 36px 4px;
+}
+
+.hero-lead-form-success h2 {
+  margin: 0;
+}
+
+.hero-lead-form-success p {
+  margin: 0;
+  color: #d9ccb7;
+  line-height: 1.6;
+}
+
+@media (max-width: 520px) {
+  .hero-lead-form {
+    padding: 26px 20px 24px;
+  }
+}
+
 .section-badge,
 .eyebrow {
   display: inline-flex;
